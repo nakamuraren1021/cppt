@@ -1,0 +1,51 @@
+<div class="container">
+	<div class="row">
+		<h2>ランキング</h2>
+
+			<h3>日間TOP10</h3>
+				<% @dailyRanks.each do |post| %>
+					<div class="col-sm-3">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<%= attachment_image_tag post,:image, :fill,230, 230, class: "profile-thumb", fallback: "" %>
+							</div>
+							<div class="panel-body">
+								<div>タイトル: <%= link_to post.title , post_path(post.id) %></div>
+								<div>投稿者: <%= link_to post.user.username,user_path(post.user.id) %></div>
+							</div>
+						</div>
+					</div>
+				<% end %>
+
+
+				<h3>週間TOP10</h3>
+					<% @weeklyRanks.each do |post| %>
+						<div class="col-sm-3">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<%= attachment_image_tag post,:image, :fill,230, 230, class: "profile-thumb", fallback: "" %>
+								</div>
+								<div class="panel-body">
+									<div>タイトル: <%= link_to post.title , post_path(post.id) %></div>
+									<div>投稿者: <%= link_to post.user.username,user_path(post.user.id) %></div>
+								</div>
+							</div>
+						</div>
+					<% end %>
+
+				<h3>月間TOP10</h3>
+					<% @monthlyRanks.each do |post| %>
+						<div class="col-sm-3">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<%= attachment_image_tag post,:image, :fill,230, 230, class: "profile-thumb", fallback: "" %>
+								</div>
+								<div class="panel-body">
+									<div>タイトル: <%= link_to post.title , post_path(post.id) %></div>
+									<div>投稿者: <%= link_to post.user.username,user_path(post.user.id) %></div>
+								</div>
+							</div>
+						</div>
+					<% end %>
+	</div>
+</div>

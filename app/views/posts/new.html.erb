@@ -1,0 +1,13 @@
+<h2>新規投稿</h2>
+
+	<%= form_for(@posts,url: posts_path) do |f| %>
+		<%= f.text_field :title, class:"form-control", placeholder:"タイトル" %>
+		<%= f.attachment_field :image %>
+		<%= f.file_field :video %>
+		<%= f.text_area :body, class:"form-control", rows:"10", placeholder:"本文" %>
+		<div class='field'>
+		    <%= f.label :"タグを追加" %>
+		    <%= f.text_field :tag_list %>
+		</div>
+		<%= f.submit "送信" %>
+	<% end %>

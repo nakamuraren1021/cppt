@@ -1,0 +1,17 @@
+<p>検索</p>
+<%= form_tag(search_path,:method => 'get') do %>
+  <%= text_field_tag :search %>
+  <%= submit_tag '検索', :name => nil %>
+<% end %>
+
+<span>相談一覧</span>
+<span><%= link_to "相談する",new_concern_path %></span>
+
+<ul><% @concerns.each do |concern| %>
+  <li>
+    <%= link_to concern.title, concern %>
+    <%= concern.created_at.strftime('%Y/%m/%d') %>
+    <%= link_to "削除",concern_path(concern),method: :delete %>
+  </li>
+  <% end %>
+</ul>

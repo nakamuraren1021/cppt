@@ -1,0 +1,8 @@
+<h2>プロフィール編集</h2>
+	<%= form_for(@user) do |f| %>
+		<div class="username">ユーザー名<%= f.text_field :username,autofocus:true,id:"inputName" %></div>
+　　		<div class="profile-image">プロフィール画像<%= f.attachment_field :profile_image %></div>
+		<div class="header-image">ヘッダー画像<%= f.attachment_field :header_image %></div>
+		<%= f.submit "送信" %>
+	<% end %>
+

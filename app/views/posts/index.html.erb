@@ -1,0 +1,37 @@
+<div class="container">
+	<div class="row">
+		<h2 class="best">今日のBEST3</h2>
+			<% @dailyRanks.each do |post| %>
+				<div class="col-sm-4">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<%= attachment_image_tag post,:image, :fill, 330, 330, class: "profile-thumb", fallback: "" %>
+						</div>
+						<div class="panel-body">
+							<div>タイトル: <%= link_to post.title , post_path(post.id) %></div>
+							<div>投稿者: <%= link_to post.user.username,user_path(post.user.id) %></div>
+						</div>
+					</div>
+				</div>
+			<% end %>
+
+		<h2 class="new">新着投稿</h2>
+		<p class="pos"><%= link_to "投稿する",new_post_path %></p>
+			<% @posts.each do |post| %>
+				<div class="col-sm-3">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<%= attachment_image_tag post,:image, :fill, 230, 230, class: "profile-thumb", fallback: "" %>
+							<!-- <%= video_tag post.video_url.to_s,loop: true, controls: true, width: 550, id: "mv" %> -->
+						</div>
+						<div class="panel-body">
+							<div>タイトル: <%= link_to post.title , post_path(post.id) %></div>
+							<div>投稿者: <%= link_to post.user.username,user_path(post.user.id) %></div>
+						</div>
+					</div>
+				</div>
+			<% end %>
+		<%= paginate @posts %>
+	</div>
+</div>
+
