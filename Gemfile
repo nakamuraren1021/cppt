@@ -67,7 +67,7 @@ gem 'pry-rails'  # rails console(もしくは、rails c)でirbの代わりにpry
 gem 'pry-doc'    # methodを表示
 gem 'pry-byebug' # デバッグを実施(Ruby 2.0以降で動作する)
 gem 'pry-stack_explorer' # スタックをたどれる
-gem 'bootstrap-sass', '~> 3.3.6'
+gem 'bootstrap-sass', '~> 3.4.1'
 gem 'jquery-rails'
 gem 'acts-as-taggable-on'
 gem 'kaminari', '~> 0.17.0'
