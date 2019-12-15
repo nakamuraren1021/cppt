@@ -5,7 +5,7 @@ class Concern < ApplicationRecord
 
 	def self.search(search)
 		if search
-			concern.where(['content LIKE ?', "%#{search}%"])
+			Concern.where(['body LIKE ? OR title LIKE ?', "%#{search}%" , "%#{search}%"])
 		else
 			Concern.all
 		end

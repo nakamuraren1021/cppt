@@ -1,10 +1,12 @@
 class ConcernsController < ApplicationController
+	PER = 2
+
 	def new
 		@concern = Concern.new
 	end
 
 	def index
-		@concerns = Concern.all
+		@concerns = Concern.page(params[:page]).per(PER)
 	end
 
 	def show
@@ -14,7 +16,7 @@ class ConcernsController < ApplicationController
 	end
 
 	def search
-		@concerns = Concern.search(params[:search])
+		@concerns = Concern.search(params[:search]).page(params[:page]).per(PER)
 	end
 
 	def create

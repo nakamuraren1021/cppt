@@ -9,3 +9,5 @@
 			<%= link_to "削除",concern_path(concern),method: :delete %>
 		<% end %>
 	<% end %>
+
+	<%= paginate @concerns %>

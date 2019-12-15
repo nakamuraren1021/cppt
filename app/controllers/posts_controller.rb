@@ -2,6 +2,7 @@ class PostsController < ApplicationController
 	PER = 4
 	
 	def index
+		@posts = Post.all
 		if params[:tag]
 			@posts = Post.tagged_with(params[:tag])
 		else
