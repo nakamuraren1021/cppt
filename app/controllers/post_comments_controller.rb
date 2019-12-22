@@ -1,14 +1,15 @@
 class PostCommentsController < ApplicationController
+	before_action :authenticate_user!
 	def create
-		post = Post.find(params[:post_comment][:post_id])
-		#comment = current_user.post_comments.new(post_comment_params)
-		#comment.post_image_id = post_image_id
-		comment = PostComment.new(post_comment_params)
-		if comment.save
-			redirect_to post_path(post)
+		@post = Post.find(params[:post_comment][:post_id])
+		@user_id = current_user.id
+		@post_comment = PostComment.new(post_comment_params)
+		if @post_comment.save
+		   redirect_to post_path(@post)
 		else
-            render :json => {'status' => 'ng'}
-	    end
+			@post_comments = PostComment.all
+			render "posts/show"
+		end
 	end
 
 	private

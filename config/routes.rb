@@ -14,5 +14,6 @@ Rails.application.routes.draw do
   resources :concerns do
     resource :concern_comments, only:[:create, :destroy]
   end
-  get 'tags/:tag', to: 'posts#index', as: :tag
+  get 'tags/:tag', to: 'tags#index', as: :tag
+  resources :recommendations
 end

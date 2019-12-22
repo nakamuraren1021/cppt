@@ -1,4 +1,0 @@
-<h2><%= @user.username %>さんのマイページ</h2>
-	<%= attachment_image_tag @user,:profile_image, :fill, 200, 200, class: "profile-thumb", fallback: "" %>
-	<%= attachment_image_tag @user,:header_image, :fill, 500,300, class: "profile-thumb" %>
-	<%= link_to "プロフィール編集", edit_user_path(@user) %>

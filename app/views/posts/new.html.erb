@@ -1,13 +1,28 @@
-<h2>新規投稿</h2>
+<div class="container">
+	<div class="row">
+		<% if @post.errors.any? %>
+		  <div id="error_explanation" class="alert alert-danger">
+		    <ul>
+		      <% @post.errors.full_messages.each do |message| %>
+		        <li><%= message %></li>
+		      <% end %>
+		    </ul>
+		  </div>
+		<% end %>
 
-	<%= form_for(@posts,url: posts_path) do |f| %>
-		<%= f.text_field :title, class:"form-control", placeholder:"タイトル" %>
-		<%= f.attachment_field :image %>
-		<%= f.file_field :video %>
-		<%= f.text_area :body, class:"form-control", rows:"10", placeholder:"本文" %>
-		<div class='field'>
-		    <%= f.label :"タグを追加" %>
-		    <%= f.text_field :tag_list %>
-		</div>
-		<%= f.submit "送信" %>
-	<% end %>
+		<h2>新規投稿</h2>
+			<div class="new-post">
+				<%= form_for(@post,url: posts_path) do |f| %>
+					<%= f.text_field :title, class:"form-control", placeholder:"タイトル" %>
+					画像<%= f.attachment_field :image %>
+					動画<%= f.file_field :video %>
+					<%= f.text_area :body, class:"form-control", rows:"10", placeholder:"本文" %>
+					<div class='field'>
+					    <%= f.label :"タグを追加" %>
+					    <%= f.text_field :tag_list %> ,カンマ区切りで複数のタグ付けができます　（例  柴犬,秋田犬
+					</div>
+					<%= f.submit "投稿する" %>
+				<% end %>
+			</div>
+	</div>
+</div>

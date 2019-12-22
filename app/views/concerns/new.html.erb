@@ -1,10 +1,15 @@
-<h2>相談掲示板へ相談する</h2>
-	<%= form_for(@concern,url: concerns_path) do |f| %>
-		<h4>相談タイトル</h4>
-		<%= f.text_field :title %>
-		<%= f.attachment_field :image %>
-		<h4>内容</h4>
-		<%= f.text_area :body, class:"form-control", rows:"10", placeholder:"本文" , size: "50x30" %>
-		
-		<%= f.submit '送信' %>
-	<% end %>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12">
+			<h2>相談掲示板へ相談する</h2>
+				<%= form_for(@concern,url: concerns_path) do |f| %>
+					<h4>相談タイトル</h4>
+					<%= f.text_field :title %>
+					<%= f.attachment_field :image %>
+					<h4>内容</h4>
+					<%= f.text_area :body, class:"form-control", rows:"10", placeholder:"本文" , size: "50x30" %>
+					<%= f.submit '送信' %>
+				<% end %>
+		</div>
+	</div>
+</div>

@@ -1,4 +1,5 @@
 class ConcernsController < ApplicationController
+	before_action :authenticate_user!, only: [:new, :create]
 	PER = 2
 
 	def new
@@ -11,7 +12,6 @@ class ConcernsController < ApplicationController
 
 	def show
 		@concern = Concern.find(params[:id])
-		@user = User.find(@concern.user_id)
 		@concern_comment = ConcernComment.new
 	end
 

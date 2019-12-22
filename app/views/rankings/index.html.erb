@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="row">
-		<h2>ランキング</h2>
+		<h2><i class="fas fa-trophy" style="color: orange;" ></i> いいね数ランキング!! <i class="fas fa-trophy" style="color: orange;" ></i></h2>
 
 			<h3>日間TOP10</h3>
 				<% @dailyRanks.each do |post| %>
@@ -8,6 +8,9 @@
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<%= attachment_image_tag post,:image, :fill,230, 230, class: "profile-thumb", fallback: "" %>
+								<% if post.video_url.present? %>
+									<%= video_tag post.video_url.to_s,loop: true, controls: true, width: 230,  id: "mv" %>
+								<% end %>
 							</div>
 							<div class="panel-body">
 								<div>タイトル: <%= link_to post.title , post_path(post.id) %></div>
@@ -25,6 +28,9 @@
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<%= attachment_image_tag post,:image, :fill,230, 230, class: "profile-thumb", fallback: "" %>
+									<% if post.video_url.present? %>
+										<%= video_tag post.video_url.to_s,loop: true, controls: true, width: 230,  id: "mv" %>
+									<% end %>
 								</div>
 								<div class="panel-body">
 									<div>タイトル: <%= link_to post.title , post_path(post.id) %></div>
@@ -41,6 +47,9 @@
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<%= attachment_image_tag post,:image, :fill,230, 230, class: "profile-thumb", fallback: "" %>
+									<% if post.video_url.present? %>
+										<%= video_tag post.video_url.to_s,loop: true, controls: true, width: 230,  id: "mv" %>
+									<% end %>
 								</div>
 								<div class="panel-body">
 									<div>タイトル: <%= link_to post.title , post_path(post.id) %></div>

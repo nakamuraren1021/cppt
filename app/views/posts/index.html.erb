@@ -1,38 +1,60 @@
 <div class="container">
 	<div class="row">
-		<h2 class="best">今日のBEST3</h2>
-			<% @dailyRanks.each do |post| %>
-				<div class="col-sm-4">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<%= attachment_image_tag post,:image, :fill, 330, 330, class: "profile-thumb", fallback: "" %>
-						</div>
-						<div class="panel-body">
-							<div>タイトル: <%= link_to post.title , post_path(post.id) %></div>
-							<div>投稿者: <%= link_to post.user.username,user_path(post.user.id) %></div>
+		<h2 class="best"><i class="fas fa-trophy" style="color: orange;" ></i>今日のBEST3<i class="fas fa-trophy" style="color: orange;" ></i></h2>
+			<% if @dailyRanks.present? %>
+				<% @dailyRanks.each do |post| %>
+					<div class="col-sm-4">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<%= attachment_image_tag post,:image, :fill, 330, 330, class: "profile-thumb", fallback: "" %>
+							</div>
+							<div class="panel-body">
+								<div>タイトル: <%= link_to post.title , post_path(post.id) %></div>
+								<div>投稿者: <%= link_to post.user.username,user_path(post.user.id) %></div>
+								<div><i class="fa fa-heart-o" aria-hidden="true"></i> <%= post.favorites.count %></div>
+								<div><%= post.post_comments.count %>件のコメント</div>
+							</div>
 						</div>
 					</div>
-				</div>
+				<% end %>
+			<% else %>
+				<h2>いいね集計中です</h2>
+			<% end %>
+	</div>
+
+	<div class="row">
+		<h2 class="new">新着投稿</h2>
+			<% if user_signed_in? %>
+				<p class="pos"><%= link_to "投稿する",new_post_path %></p>
+			<% else %>
+				<P><%= link_to "ログイン",new_user_session_path  %>すると投稿ができるようになります</P>
 			<% end %>
 
-		<h2 class="new">新着投稿</h2>
-		<p class="pos"><%= link_to "投稿する",new_post_path %></p>
 			<% @posts.each do |post| %>
 				<div class="col-sm-3">
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<%= attachment_image_tag post,:image, :fill, 230, 230, class: "profile-thumb", fallback: "" %>
 								<% if post.video_url.present? %>
-									<%= video_tag post.video_url.to_s,loop: true, controls: true, width: 550, id: "mv" %>
+									<%= video_tag post.video_url.to_s,loop: true, controls: true, width: 230,  id: "mv" %>
 								<% end %>
 						</div>
 						<div class="panel-body">
 							<div>タイトル: <%= link_to post.title , post_path(post.id) %></div>
 							<div>投稿者: <%= link_to post.user.username,user_path(post.user.id) %></div>
+							<div><i class="fa fa-heart-o" aria-hidden="true"></i> <%= post.favorites.count %></div>
+							<div><%= post.post_comments.count %>件のコメント</div>
 						</div>
 					</div>
 				</div>
 			<% end %>
+	</div>
+
+	<div class="row">
+		<div class="col-som-12">
+			<h2>管理人おすすめ癒され動画</h2>
+				<div id="sample"></div>
+		</div>
 	</div>
 </div>
 

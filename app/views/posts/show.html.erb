@@ -1,13 +1,17 @@
 <div class="container">
 	<div class="row">
 		<div class="col-sm-12">
+
 			<div show-image><%= attachment_image_tag @post,:image, :fill, 500, 500, class: "profile-thumb", fallback: "" %></div>
+			<% if @post.video_url.present? %>
+				<%= video_tag @post.video_url.to_s,loop: true, controls: true, width: 500,  id: "mv" %>
+			<% end %>
 			<h2><%= @post.title %></h2>
 			<h5><%= @post.body %></h5>
 			<div>投稿者:<%= @post.user.username %></div>
 			<p>タグ: <%= raw(@post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')) %></p>
 
-
+		<% if user_signed_in? %>
 			<% if @post.favorited_by?(current_user) %> <!--いいねボタン -->
 				<%= link_to post_favorites_path(@post),method: :delete do %>
 					<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
@@ -19,6 +23,7 @@
 					<%= @post.favorites.count %>いいね
 				<% end %>
 			<% end %>
+		<% end %>
 
 			<%= @post.created_at.strftime('%Y/%m/%d') %>
 
@@ -26,16 +31,42 @@
 				<%= link_to "削除",post_path(@post), method: :delete %>
 			<% end %>
 
-		<h2 class="comment">コメント</h2>
-			<% @post.post_comments.each do |post_comment| %>
-				<p><%= post_comment.user.username %></p>
-				<p><%= post_comment.comment %></p>
-				<p><%= post_comment.created_at.strftime('%Y/%m/%d') %></p>
+			<% if @post_comment.errors.any? %>
+			  <div id="error_explanation" class="alert alert-danger">
+			    <ul>
+			      <% @post_comment.errors.full_messages.each do |message| %>
+			        <li><%= message %></li>
+			      <% end %>
+			    </ul>
+			  </div>
 			<% end %>
 
+
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>ユーザー名</th>
+						<th>コメント<%= @post.post_comments.count %>件</th>
+						<th>コメント日</th>
+					</tr>
+				</thead>
+				<% @post.post_comments.each do |post_comment| %><!--コメント機能のView -->
+					<tbody>
+						<tr>
+							<th><%= post_comment.user.username %></th>
+							<th><%= post_comment.comment %></th>
+							<th><%= post_comment.created_at.strftime('%Y/%m/%d') %></th>
+						</tr>
+					</tbody>
+				<% end %>
+			</table>
+
 			<%= form_for [@post, @post_comment] do |f| %>
-			    <%= f.hidden_field :user_id , :value => @user_id %>
-			    <%= f.hidden_field :post_id , :value => @post.id %>
+				<% if user_signed_in? %>
+				    <%= f.hidden_field :user_id , :value => current_user.id %>
+				    <%= f.hidden_field :post_id , :value => @post.id %>
+			    <% end %>
 				<%= f.text_area :comment,class:"form-control",placeholder:"コメントをここに" %>
 				<%= f.submit "送信する" %>
 			<% end %>
