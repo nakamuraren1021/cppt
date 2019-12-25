@@ -1,20 +1,23 @@
-<h2>プロフィール編集</h2>
+<div class="container">
+  <div class="row">
+      <h2>プロフィール編集</h2>
+          <% if @user.errors.any? %>
+            <div id="error_explanation" class="alert alert-danger">
+              <ul>
+                <% @user.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
 
-<% if @user.errors.any? %>
-  <div id="error_explanation" class="alert alert-danger">
-    <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
+          <%= form_for(@user) do |f| %>
+          		<div>ユーザー名<%= f.text_field :username,autofocus:true,id:"inputName" %></div>
+          　　	<div>プロフィール画像<%= f.attachment_field :profile_image %></div>
+          		<div>ヘッダー画像<%= f.attachment_field :header_image %></div>
+          		<div>自己紹介<%= f.text_area :introduction %></div>
+          		<%= f.submit "保存" %>
+          	<% end %>
   </div>
-<% end %>
-
-	<%= form_for(@user) do |f| %>
-		<div class="username">ユーザー名<%= f.text_field :username,autofocus:true,id:"inputName" %></div>
-　　		<div>プロフィール画像<%= f.attachment_field :profile_image %></div>
-		<div>ヘッダー画像<%= f.attachment_field :header_image %></div>
-		<div>自己紹介<%= f.text_area :introduction %></div>
-		<%= f.submit "保存" %>
-	<% end %>
+</div>
 

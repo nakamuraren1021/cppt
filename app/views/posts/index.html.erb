@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="row">
-		<h2 class="best"><i class="fas fa-trophy" style="color: orange;" ></i>今日のBEST3<i class="fas fa-trophy" style="color: orange;" ></i></h2>
+		<h2 class="best"><i class="fas fa-dog"></i> 今日のBEST3 <i class="fas fa-dog"></i></h2>
 			<% if @dailyRanks.present? %>
 				<% @dailyRanks.each do |post| %>
 					<div class="col-sm-4">
@@ -23,7 +23,7 @@
 	</div>
 
 	<div class="row">
-		<h2 class="new">新着投稿</h2>
+		<h2 class="new"><i class="fas fa-paw"></i> 新着投稿 <i class="fas fa-paw"></i></h2>
 			<% if user_signed_in? %>
 				<p class="pos"><%= link_to "投稿する",new_post_path %></p>
 			<% else %>
@@ -50,9 +50,11 @@
 			<% end %>
 	</div>
 
+	<%= paginate @posts %>
+
 	<div class="row">
 		<div class="col-som-12">
-			<h2>管理人おすすめ癒され動画</h2>
+			<h2>管理人おすすめ動画</h2>
 				<div id="sample"></div>
 		</div>
 	</div>

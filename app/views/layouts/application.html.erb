@@ -16,14 +16,14 @@
     <header>
       <nav>
         <ul id="nav">
-           <li><%= link_to "HOME",posts_path %>
+           <li><i class="fas fa-home"></i><%= link_to "HOME",posts_path %>
              <%if user_signed_in? %> <!-- ユーザーがログインしている時 -->
-                <li><%= link_to "ランキング", rankings_path %>
-                <li><%= link_to "相談掲示板", search_path %>
-                <li><%= link_to current_user.username, user_path(current_user.id) %>さん
+                <li><i class="fas fa-trophy"></i><%= link_to "ランキング", rankings_path %>
+                <li><i class="fas fa-bone"></i><%= link_to "相談掲示板", search_path %>
+                <li><i class="fas fa-user"></i><%= link_to current_user.username, user_path(current_user.id) %>さん
                 <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %><i class="fas fa-sign-out-alt"></i>
             <% else %>             <!--ユーザーがログインしていない時 -->
-                <li><%= link_to "ランキング", rankings_path %>
+                <li><<i class="fas fa-trophy"></i><%= link_to "いいね数ランキング", rankings_path %>
                 <li><%= link_to "相談掲示板", search_path %>
                 <li><%= link_to "新規会員登録", new_user_registration_path %>
                 <li><%= link_to "ログイン",new_user_session_path  %>

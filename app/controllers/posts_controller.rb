@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
+	PER = 4
 	def index
-		@posts = Post.all
+		@posts = Post.page(params[:page]).per(PER)
 		@dailyRanks = Post.find(Favorite.where(created_at:1.days.ago..Time.now).group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
 	end
 	def show

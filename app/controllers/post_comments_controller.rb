@@ -7,8 +7,8 @@ class PostCommentsController < ApplicationController
 		if @post_comment.save
 		   redirect_to post_path(@post)
 		else
-			@post_comments = PostComment.all
-			render "posts/show"
+		   @post_comments = PostComment.all
+		   render "posts/show"
 		end
 	end
 
