@@ -29,7 +29,7 @@ class ConcernsController < ApplicationController
 	def destroy
 		@concern = Concern.find(params[:id])
 		@concern.destroy
-		redirect_to concerns_path
+		redirect_to search_path
 	end
 
  private

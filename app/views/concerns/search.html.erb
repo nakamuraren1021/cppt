@@ -26,7 +26,9 @@
 						<tr>
 							<th><%= link_to concern.title, concern %></th>
 							<th><%= concern.created_at.strftime('%Y/%m/%d') %></th>
-							<th><%= link_to "削除",concern_path(concern),method: :delete %></th>
+								<% if concern.user == current_user %>
+									<th><%= link_to "削除",concern_path(concern),method: :delete %></th>
+								<% end %>
 						</tr>
 					</tbody>
 				<% end %>

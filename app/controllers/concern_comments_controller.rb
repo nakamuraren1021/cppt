@@ -15,6 +15,7 @@ class ConcernCommentsController < ApplicationController
 	def concern_comment_params
 		params.require(:concern_comment).permit(:user_id,:concern_id,:comment)
 	end
+
 end
 
 
