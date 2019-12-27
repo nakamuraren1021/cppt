@@ -1,11 +1,12 @@
-<h2><%= @user.username %>さんのプロフィール</h2>
+<h2 class="name"><%= @user.username %>さんのプロフィール</h2>
 
 <div class="profile">
 	<div class="profile-image"><%= attachment_image_tag @user,:profile_image, :fill, 150, 150, class: "radius", fallback: "" %></div>
 	<div class="header-image"><%= attachment_image_tag @user,:header_image, :fill, 500,300, class: "profile-thumb" %></div>
-</div>
+
 
 	<div>自己紹介：<%= @user.introduction %></div>
-	<% if @user == current_user %>
-	<div><%= link_to "プロフィール編集", edit_user_path(@user) %></div>
-	<% end %>
+		<% if @user == current_user %>
+			<div><%= link_to "プロフィール編集", edit_user_path(@user) %></div>
+		<% end %>
+</div>

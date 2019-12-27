@@ -26,10 +26,11 @@ header{
 }
 
 #nav {
-	width: 1118px;
+	width: 1219px;
   list-style: none;
   display: flex;
   margin: 0 auto;
+  margin-bottom: 60px;
 }
 
 #nav li {
@@ -45,4 +46,8 @@ header{
   color: black;
   font-weight: bold;
   padding: 9px;
+}
+
+footer {
+  height: 60px;
 }

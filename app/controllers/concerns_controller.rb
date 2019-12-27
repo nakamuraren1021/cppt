@@ -1,6 +1,6 @@
 class ConcernsController < ApplicationController
 	before_action :authenticate_user!, only: [:new, :create]
-	PER = 2
+	PER = 10
 
 	def new
 		@concern = Concern.new
