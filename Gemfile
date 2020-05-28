@@ -69,7 +69,7 @@ gem 'pry-stack_explorer' # スタックをたどれる
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'jquery-rails'
 gem 'acts-as-taggable-on'
-gem 'kaminari', '~> 0.17.0'
+gem 'kaminari', '~> 1.2.1'
 gem 'kaminari-bootstrap', '~> 3.0.1'
 gem 'carrierwave'
 gem 'rails-i18n'
